@@ -1,0 +1,39 @@
+
+.userForm{
+  padding-left:20px;
+}
+
+.topTwentyMargin{
+  margin-top: 20px;
+}
+.topTwentyFourMargin{
+  margin-top: 24px;
+}
+.topTenMargin{
+  margin-top: 10px;
+}
+.redComment{
+  color:red;
+}
+
+.setInputWidth{
+  width: 500px;
+
+}
+
+span.clear {
+    position: relative;
+}
+span.clear span {
+    position: absolute;
+    display: block;
+    top: -3px;
+    right: 0px;
+    width: 16px;
+    height: 16px;
+
+    cursor: pointer;
+}
+span.clear input {
+    padding-right: 20px;
+}

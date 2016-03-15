@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>BMC Test</title>
-    <!-- js libs -->
-    <script type="text/javascript" src="angular.min.js"></script>
 
-    <!-- project js -->
-    <script type="text/javascript" src="app.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>BMC Test</title>
+  <!-- js libs -->
+  <script type="text/javascript" src="angular.min.js"></script>
 
-    <!-- css libs -->
-    <link rel="stylesheet" href="bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <!-- project css -->
-    <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
+  <!-- project js -->
+  <script type="text/javascript" src="app.js"></script>
+
+  <!-- css libs -->
+  <link rel="stylesheet" href="bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+  <!-- project css -->
+  <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
 
 
-  </head>
-  <body>
-    <header>
+</head>
 
-    </header>
-    <section>
-      <div class="userForm">
-        <div class="redComment topTwentyMargin">
-          * Required Field
-        </div>
-        <div class="topTwentyFourMargin">
-          <span>Affected User(s)</span>
-          <span class="redComment">*</span>
-        </div>
-        <div class="topTenMargin">
-          <span class="clear">
+<body ng-app="bmcProj">
+  <header>
+
+  </header>
+  <section ng-controller="BmcProjController">
+    <div class="userForm">
+      <div class="redComment topTwentyMargin">
+        * Required Field
+      </div>
+      <div class="topTwentyFourMargin">
+        <span>Affected User(s)</span>
+        <span class="redComment">*</span>
+      </div>
+      <div class="topTenMargin">
+        <span class="clear">
             <input type="text" name="name" value="" class="setInputWidth">
             <span onclick="var input = this.previousSibling; input.value = ''; input.focus();">x</span>
-          </span>
+        </span>
+      </div>
 
-
+      <div ng-repeat="item in people">
+        <div class="pull-left" style="width: 40px">
+          <!-- <img ng-src="{{ t.picture }}" style="width: 30px" /> -->
         </div>
-      </div>
-      <div class="actionArea">
-        test1
-      </div>
+        <div class="pull-left">
+          <strong>{{ item.name }}</strong>
+          <span>{{ item.email }}</span>
+        </div>
 
-    </section>
-  </body>
+
+        <div class="clearfix"></div>
+
+      </div>
+    </div>
+    <div class="actionArea">
+      {{i}}
+    </div>
+
+  </section>
+</body>
+
 </html>

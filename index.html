@@ -6,12 +6,15 @@
   <title>BMC Test</title>
   <!-- js libs -->
   <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="underscore-min.js"></script>
+  <script type="text/javascript" src="toaster.js"></script>
 
   <!-- project js -->
   <script type="text/javascript" src="app.js"></script>
 
   <!-- css libs -->
   <link rel="stylesheet" href="bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="toaster.css" media="screen" title="no title" charset="utf-8">
   <!-- project css -->
   <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
 
@@ -23,69 +26,84 @@
 
   </header>
   <section ng-controller="BmcProjController">
-     <form name="userForm" ng-submit="submitForm()" class="userForm" novalidate>
+     <toaster-container toaster-options="{'closeButton': true, 'timeOut':1000}"></toaster-container>
+    <form name="userForm" ng-submit="submitForm()" class="userForm" novalidate>
+      <div class="userArea">
+        <div class="redComment topTwentyMargin">
+          * Required Field
+        </div>
+        <div class="topTwentyFourMargin">
+          <span>Affected User(s)</span>
+          <span class="redComment">*</span>
+        </div>
 
-      <div class="redComment topTwentyMargin">
-        * Required Field
-      </div>
-      <div class="topTwentyFourMargin">
-        <span>Affected User(s)</span>
-        <span class="redComment">*</span>
-      </div>
+        <div class="topTenMargin">
+          <span class="clear">
+            <input type="text" name="naffectedUser" value="" ng-keypress="findUser()" ng-keydown="findUser()" class="setInputWidth" ng-model="user.affectedUser" required>
+            <span ng-click="clearAffectedUser()">x</span>
 
-      <div class="topTenMargin">
-        <span class="clear">
-            <input type="text" name="affectedUser" value="" class="setInputWidth" ng-model="user.affectedUser" required>
-            <span onclick="var input = this.previousSibling; input.value = ''; input.focus();">x</span>
+          </span>
+          <div class="searchResults">
+            <div class="eachUser" ng-click="selectUser(user)" ng-repeat="user in searched">
+              <div class="userIconArea">
+                <div class="userIcon"></div>
+                <div class="userStatus"></div>
+              </div>
+              <div class="userInfo">
+                <div>{{user.name}}</div>
+                <div>{{user.email}}</div>
+              </div>
+              <div class="userCompany">{{user.company}}</div>
 
+            </div>
+          </div>
+          <!-- <p ng-show="userForm.naffectedUser.$invalid" class="help-block">username is required.</p> -->
+        </div>
+
+        <div class="topTwentyMargin">
+          <span>Affected Company</span>
+          <span class="redComment">*</span>
+        </div>
+        <div class="topTenMargin">
+          <span class="clear">
+            <input type="text" name=""  value="" class="setInputWidth" ng-model="user.affectedCompany"/ >
         </span>
-        <p ng-show="userForm.affectedUser.$dirty" class="help-block">You name is required.</p>
-      </div>
+        </div>
 
-      <div class="topTwentyMargin">
-        <span>Affected Company</span>
-        <span class="redComment">*</span>
-      </div>
-      <div class="topTenMargin">
-        <span class="clear">
-            <input type="text"  value="" class="setInputWidth" ng-model="user.affectedCompany"/ >
-        </span>
-      </div>
-      <div class="">
-        {{user.affectedCompany}}
-      </div>
 
-      <div class="topTwentyMargin">
-        <span>Incident Template</span>
-      </div>
+        <div class="topTwentyMargin">
+          <span>Incident Template</span>
+        </div>
 
-      <div class="topTenMargin">
-        <span class="clear">
-            <input type="text"  placeholder="Start typing the name of a common issue" value="" class="setInputWidthOne" ng-model="userForm.commonIssue"/>
+        <div class="topTenMargin">
+          <span class="clear">
+            <input type="text" name="ncommonIssue" placeholder="Start typing the name of a common issue" value="" class="setInputWidthOne" ng-model="userForm.commonIssue"/>
       </span>
-      <div class="buttonBrowse">Browse</div>
-      </div>
+          <div class="buttonBrowse">Browse</div>
+        </div>
 
-      <div class="topTwentyMargin">
-        <input type="checkbox" id="autoAssign" value="check" ng-model="userForm.autoAssign">
-        <span >Auto-assign this task to the best fit group</span>
-      </div>
-      <div class="topFourtyMargin">
-        <span>Incident Title</span>
-        <span class="redComment">*</span>
-      </div>
-      <div class="topTenMargin">
-        <span class="clear">
-            <input type="text" name="name" placeholder="Type a title for this incident" value="" class="setInputWidth" ng-model="userForm.incidentTitle" required>
+        <div class="topTwentyMargin">
+          <input type="checkbox" id="autoAssign" value="check" ng-model="userForm.autoAssign">
+          <span>Auto-assign this task to the best fit group</span>
+        </div>
+        <div class="topFourtyMargin">
+          <span>Incident Title</span>
+          <span class="redComment">*</span>
+        </div>
+        <div class="topTenMargin">
+          <span class="clear">
+            <input type="text" name="nincidentTitle" placeholder="Type a title for this incident" value="" class="setInputWidth" ng-model="userForm.incidentTitle" required>
         </span>
+        </div>
+        <div class="topTwentyMargin">
+          <span>Calculated Priority:</span>
+          <div class="btnHigh">High</div>
+        </div>
       </div>
-      <div class="topTwentyMargin">
-        <span>Calculated Priority:</span><div class="btnHigh">High</div>
-      </div>
-
       <div class="actionArea">
         <div class="actionAreaContainer">
-          <div class="buttonBrowse" ng-model="actionArea.cancel">Cancel</div><div class="buttonBrowse blue" ng-model="actionarea.save" ng-click="save()" ng-class="{ saveActive: userForm.affectedCompany.$pristine, saveInactive:(!userForm.affectedCompany.$pristine) }">Save</div>
+          <div class="buttonBrowse" ng-model="actionArea.cancel">Cancel</div>
+          <div class="buttonBrowse blue" ng-model="actionarea.save" ng-click="save()" ng-class="{ saveInactive:userForm.naffectedUser.$invalid || userForm.naffectedCompany.$invalid || userForm.nincidentTitle.$invalid  }">Save</div>
         </div>
 
       </div>

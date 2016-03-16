@@ -1,6 +1,8 @@
 
 .userForm{
   padding-left:20px;
+  height: 530px;
+  overflow-y: scroll;
 }
 
 .topTwentyMargin{
@@ -8,6 +10,9 @@
 }
 .topTwentyFourMargin{
   margin-top: 24px;
+}
+.topFourtyMargin{
+  margin-top: 40px;
 }
 .topTenMargin{
   margin-top: 10px;
@@ -18,8 +23,19 @@
 
 .setInputWidth{
   width: 500px;
-
 }
+.setInputWidthOne{
+  width: 425px;
+}
+/*input[type=checkbox]
+{
+
+  -ms-transform: scale(2);
+  -moz-transform: scale(2);
+  -webkit-transform: scale(2);
+  -o-transform: scale(2);
+
+}*/
 
 span.clear {
     position: relative;
@@ -37,4 +53,43 @@ span.clear input {
     padding-left: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
+}
+
+.btnHigh{
+  background-color: red;
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  margin-left: 10px;
+  cursor: pointer;
+
+}
+.buttonBrowse{
+  background-color: #ABA7A7;
+      display: inline-block;
+      width: 60px;
+      height: 100%;
+      color: white;
+      text-align: center;
+      margin-left: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      cursor: pointer;
+}
+.actionArea{
+  border-top: 3px solid #9E9B9B;
+margin-top: 5px;
+}
+
+.actionAreaContainer{
+  float: right;
+    padding: 20px;
+
+}
+.blue{
+  background-color: blue;
+  
 }

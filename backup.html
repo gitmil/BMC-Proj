@@ -23,8 +23,7 @@
 
   </header>
   <section ng-controller="BmcProjController">
-     <form name="userForm" ng-submit="submitForm()" class="userForm" novalidate>
-
+    <div class="userForm">
       <div class="redComment topTwentyMargin">
         * Required Field
       </div>
@@ -32,28 +31,39 @@
         <span>Affected User(s)</span>
         <span class="redComment">*</span>
       </div>
-
       <div class="topTenMargin">
         <span class="clear">
-            <input type="text" name="affectedUser" value="" class="setInputWidth" ng-model="user.affectedUser" required>
+            <input type="text" name="name" value="" class="setInputWidth" ng-model="userForm.affectedUser" required>
             <span onclick="var input = this.previousSibling; input.value = ''; input.focus();">x</span>
 
         </span>
-        <p ng-show="userForm.affectedUser.$dirty" class="help-block">You name is required.</p>
+        <p ng-show="userForm.affectedUser.$pristine" class="help-block">You name is required.</p>
       </div>
 
+      <!-- <div ng-repeat="item in people">
+        <div class="pull-left" style="width: 40px">
+          <img ng-src="{{ t.picture }}" style="width: 30px" />
+        </div>
+        <div class="pull-left">
+          <strong>{{ item.name }}</strong>
+          <span>{{ item.email }}</span>
+        </div>
+        <div class="clearfix"></div>
+      </div> -->
       <div class="topTwentyMargin">
         <span>Affected Company</span>
         <span class="redComment">*</span>
       </div>
       <div class="topTenMargin">
         <span class="clear">
-            <input type="text"  value="" class="setInputWidth" ng-model="user.affectedCompany"/ >
+            <input type="text"  value="" class="setInputWidth" ng-model="uaffectedCompany" >
+
         </span>
       </div>
-      <div class="">
-        {{user.affectedCompany}}
-      </div>
+
+
+
+
 
       <div class="topTwentyMargin">
         <span>Incident Template</span>
@@ -61,10 +71,11 @@
 
       <div class="topTenMargin">
         <span class="clear">
-            <input type="text"  placeholder="Start typing the name of a common issue" value="" class="setInputWidthOne" ng-model="userForm.commonIssue"/>
+            <input type="text"  placeholder="Start typing the name of a common issue" value="" class="setInputWidthOne" ng-model="userForm.commonIssue">
       </span>
       <div class="buttonBrowse">Browse</div>
       </div>
+
 
       <div class="topTwentyMargin">
         <input type="checkbox" id="autoAssign" value="check" ng-model="userForm.autoAssign">
@@ -83,15 +94,16 @@
         <span>Calculated Priority:</span><div class="btnHigh">High</div>
       </div>
 
-      <div class="actionArea">
-        <div class="actionAreaContainer">
-          <div class="buttonBrowse" ng-model="actionArea.cancel">Cancel</div><div class="buttonBrowse blue" ng-model="actionarea.save" ng-click="save()" ng-class="{ saveActive: userForm.affectedCompany.$pristine, saveInactive:(!userForm.affectedCompany.$pristine) }">Save</div>
-        </div>
 
+
+
+    </div>
+    <div class="actionArea">
+      <div class="actionAreaContainer">
+        <div class="buttonBrowse" ng-model="actionArea.cancel">Cancel</div><div class="buttonBrowse blue" ng-model="actionarea.save" ng-click="save()" ng-class="{ saveActive: userForm.affectedCompany.$pristine, saveInactive:(!userForm.affectedCompany.$pristine) }">Save</div>
       </div>
 
-    </form>
-
+    </div>
 
   </section>
 </body>
